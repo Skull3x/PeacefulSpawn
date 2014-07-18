@@ -1,0 +1,17 @@
+name: PeacefulSpawn
+main: LDX\PeacefulSpawn\Main
+version: 2.0
+api: [1.1.0]
+load: POSTWORLD
+author: LDX
+description: Keeps your players safe in spawn
+website: "http://forums.pocketmine.net/threads/peacefulspawn.3268/"
+commands:
+ ps:
+  description: Toggles PeacefulSpawn's protection
+  usage: "Usage: /ps"
+  permission: peacefulspawn.toggle
+permissions:
+ peacefulspawn.toggle:
+  description: "Allows the user to toggle spawn protection"
+  default: op
