@@ -1,0 +1,4 @@
+PeacefulSpawn
+=============
+
+A PocketMine plugin
