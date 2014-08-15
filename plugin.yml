@@ -1,7 +1,7 @@
 name: PeacefulSpawn
 main: LDX\PeacefulSpawn\Main
-version: 2.0
-api: [1.1.0]
+version: 2.2
+api: [1.0.0,1.1.0,1.2.0]
 load: POSTWORLD
 author: LDX
 commands:
@@ -10,6 +10,10 @@ commands:
     usage: "/ps"
     permission: peacefulspawn.toggle
 permissions:
-  peacefulspawn.toggle:
-    description: "Allows the user to toggle spawn protection"
+  peacefulspawn:
+    description: "Allows access to all PeacefulSpawn features."
     default: op
+    children:
+      peacefulspawn.toggle:
+        description: "Allows the user to toggle spawn protection."
+        default: op
