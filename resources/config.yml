@@ -1,5 +1,0 @@
-# Config file for PeacefulSpawn by LDX;
-
-# The radius around spawn to protect players in;
-# Make sure to update the radius every time you change it in server.properties;
-Radius: 16
