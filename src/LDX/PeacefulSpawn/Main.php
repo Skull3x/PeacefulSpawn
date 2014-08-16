@@ -54,7 +54,7 @@ class Main extends PluginBase implements Listener {
   * @priority HIGHEST
   * @ignoreCancelled true
   */
-  public function onHurt(EntityDamageByEntityEvent $event) {
+  public function onHurtByEntity(EntityDamageByEntityEvent $event) {
     $entity = $event->getEntity();
     $v = new Vector3($entity->getLevel()->getSpawnLocation()->getX(),$entity->getPosition()->getY(),$entity->getLevel()->getSpawnLocation()->getZ());
     $r = $this->getServer()->getSpawnRadius();
