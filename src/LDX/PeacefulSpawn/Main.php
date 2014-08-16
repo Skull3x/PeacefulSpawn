@@ -9,16 +9,11 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 class Main extends PluginBase implements Listener {
   public function onEnable() {
     $this->enabled = true;
     $this->getServer()->getPluginManager()->registerEvents($this,$this);
-    if(!file_exists($this->getDataFolder() . "config.yml")) {
-      @mkdir($this->getDataFolder());
-      file_put_contents($this->getDataFolder() . "config.yml",$this->getResource("config.yml"));
-    }
-    $c = yaml_parse(file_get_contents($this->getDataFolder() . "config.yml"));
-    $this->r = $c["Radius"];
   }
   public function onCommand(CommandSender $issuer,Command $cmd,$label,array $args) {
     if(strtolower($cmd->getName()) == "ps" ) {
@@ -48,7 +43,22 @@ class Main extends PluginBase implements Listener {
   public function onHurt(EntityDamageEvent $event) {
     $entity = $event->getEntity();
     $v = new Vector3($entity->getLevel()->getSpawnLocation()->getX(),$entity->getPosition()->getY(),$entity->getLevel()->getSpawnLocation()->getZ());
-    if(($entity instanceof Player) && ($entity->getPosition()->distance($v) <= $this->r) && ($this->enabled == true)) {
+    $r = $this->getServer()->getSpawnRadius();
+    if(($entity instanceof Player) && ($entity->getPosition()->distance($v) <= $r) && ($this->enabled == true)) {
+      $event->setCancelled();
+    }
+  }
+  /**
+  * @param EntityDamageByEntityEvent $event
+  *
+  * @priority HIGHEST
+  * @ignoreCancelled true
+  */
+  public function onHurt(EntityDamageByEntityEvent $event) {
+    $entity = $event->getEntity();
+    $v = new Vector3($entity->getLevel()->getSpawnLocation()->getX(),$entity->getPosition()->getY(),$entity->getLevel()->getSpawnLocation()->getZ());
+    $r = $this->getServer()->getSpawnRadius();
+    if(($entity instanceof Player) && ($entity->getPosition()->distance($v) <= $r) && ($this->enabled == true)) {
       $event->setCancelled();
     }
   }
