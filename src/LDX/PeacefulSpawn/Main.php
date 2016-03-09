@@ -48,19 +48,4 @@ class Main extends PluginBase implements Listener {
       $event->setCancelled();
     }
   }
-  /**
-  * @param EntityDamageByEntityEvent $event
-  *
-  * @priority HIGHEST
-  * @ignoreCancelled true
-  */
-  public function onHurtByEntity(EntityDamageByEntityEvent $event) {
-    $entity = $event->getEntity();
-    $v = new Vector3($entity->getLevel()->getSpawnLocation()->getX(),$entity->getPosition()->getY(),$entity->getLevel()->getSpawnLocation()->getZ());
-    $r = $this->getServer()->getSpawnRadius();
-    if(($entity instanceof Player) && ($entity->getPosition()->distance($v) <= $r) && ($this->enabled == true)) {
-      $event->setCancelled();
-    }
-  }
 }
-?>
