@@ -1,6 +1,6 @@
 name: PeacefulSpawn
 main: LDX\PeacefulSpawn\Main
-version: 2.4
+version: 2.5
 api: [1.0.0, 2.0.0]
 load: POSTWORLD
 author: LDX
