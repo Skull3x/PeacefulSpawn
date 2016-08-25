@@ -50,9 +50,9 @@ class Main extends PluginBase implements Listener {
   
   public function onPlace(\pocketmine\event\block\BlockPlaceEvent $event) {
     $block = $event->getBlock();
-    $v = new Vector3($entity->getLevel()->getSpawnLocation()->getX(),$entity->getPosition()->getY(),$entity->getLevel()->getSpawnLocation()->getZ());
+    $v = new Vector3($block->getLevel()->getSpawnLocation()->getX(),$block->getPosition()->getY(),$block->getLevel()->getSpawnLocation()->getZ());
     $r = $this->getServer()->getSpawnRadius();
-    if(($block instanceof \pocketmine\block\Lava) && ($block instanceof \pocketmine\block\Water) && ($entity->getPosition()->distance($v) <= $r) && ($this->enabled == true)) {
+    if(($block instanceof \pocketmine\block\Lava) && ($block instanceof \pocketmine\block\Water) && ($block->getPosition()->distance($v) <= $r) && ($this->enabled == true)) {
       $event->setCancelled(true);
     }
   }
