@@ -10,6 +10,8 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
+use pocketmine\block\Block;
+use pocketmine\entity\Entity;
 
 class Main extends PluginBase implements Listener {
   
@@ -42,6 +44,15 @@ class Main extends PluginBase implements Listener {
     $v = new Vector3($entity->getLevel()->getSpawnLocation()->getX(),$entity->getPosition()->getY(),$entity->getLevel()->getSpawnLocation()->getZ());
     $r = $this->getServer()->getSpawnRadius();
     if(($entity instanceof \pocketmine\entity\PrimedTNT) && ($entity->getPosition()->distance($v) <= $r) && ($this->enabled == true)) {
+      $event->setCancelled(true);
+    }
+  }
+  
+  public function onPlace(\pocketmine\event\block\BlockPlaceEvent $event) {
+    $block = $event->getBlock();
+    $v = new Vector3($entity->getLevel()->getSpawnLocation()->getX(),$entity->getPosition()->getY(),$entity->getLevel()->getSpawnLocation()->getZ());
+    $r = $this->getServer()->getSpawnRadius();
+    if(($block instanceof \pocketmine\block\Lava) && ($block instanceof \pocketmine\block\Water) && ($entity->getPosition()->distance($v) <= $r) && ($this->enabled == true)) {
       $event->setCancelled(true);
     }
   }
