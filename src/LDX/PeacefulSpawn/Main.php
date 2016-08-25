@@ -36,20 +36,6 @@ class Main extends PluginBase implements Listener {
       return false;
     }
   }
-  /**
-  * @param EntityDamageEvent $event
-  *
-  * @priority HIGHEST
-  * @ignoreCancelled true
-  */
-  public function onHurt(\pocketmine\event\entity\EntityDamageEvent $event) {
-    $entity = $event->getEntity();
-    $v = new Vector3($entity->getLevel()->getSpawnLocation()->getX(),$entity->getPosition()->getY(),$entity->getLevel()->getSpawnLocation()->getZ());
-    $r = $this->getServer()->getSpawnRadius();
-    if(($entity instanceof \pocketmine\Player) && ($entity->getPosition()->distance($v) <= $r) && ($this->enabled == true)) {
-      $event->setCancelled(true);
-    }
-  }
   
   public function onPrime(\pocketmine\event\entity\ExplosionPrimeEvent $event) {
     $entity = $event->getEntity();
