@@ -1,5 +1,7 @@
 <?php
+
 namespace LDX\PeacefulSpawn;
+
 use pocketmine\math\Vector3;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -10,6 +12,7 @@ use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 
 class Main extends PluginBase implements Listener {
+  
   public function onEnable() {
     $this->enabled = true;
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
